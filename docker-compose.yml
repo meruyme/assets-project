@@ -1,5 +1,31 @@
-version: "3.9"
+version: '3.9'
 services:
+  redis:
+    container_name: assets-redis
+    image: redis:6.0-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/var/lib/redis
+
+  celery:
+    build: .
+    container_name: assets-celery
+    command: celery -A assetsproject worker --loglevel=INFO -n worker1_default@%h -Q 'default'
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+
+  celery_beat:
+    build: .
+    container_name: assets-celery-beat
+    command: celery -A assetsproject beat --loglevel=DEBUG
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+
   db:
     container_name: assets-db
     image: library/postgres:13.3
@@ -9,6 +35,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - '5432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/11/data
+
   web:
     container_name: assets-web
     build:
@@ -16,7 +45,7 @@ services:
       dockerfile: Dockerfile
     command: bash -c "python manage.py runserver 0.0.0.0:8000"
     ports:
-      - "8000:8000"
+      - '8000:8000'
     volumes:
       - .:/code
     env_file: .env
@@ -27,3 +56,10 @@ services:
         - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     depends_on:
       - db
+      - redis
+      - celery
+      - celery_beat
+
+volumes:
+  redis-data:
+  db-data:
