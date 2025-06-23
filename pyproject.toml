@@ -12,6 +12,7 @@ dependencies = [
     "django-bootstrap-pagination==1.7.1",
     "django-celery-beat==2.8.1",
     "django-redis==5.4.0",
+    "requests==2.32.3",
     "pip-tools"
 ]
 

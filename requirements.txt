@@ -16,6 +16,10 @@ build==1.2.2.post1
     # via pip-tools
 celery==5.5.3
     # via django-celery-beat
+certifi==2025.6.15
+    # via requests
+charset-normalizer==3.4.2
+    # via requests
 click==8.1.8
     # via
     #   celery
@@ -52,6 +56,8 @@ django-redis==5.4.0
     # via assets-project (pyproject.toml)
 django-timezone-field==7.1
     # via django-celery-beat
+idna==3.10
+    # via requests
 importlib-metadata==8.7.0
     # via build
 kombu==5.5.4
@@ -83,6 +89,8 @@ python-dateutil==2.9.0
     #   python-crontab
 redis==6.2.0
     # via django-redis
+requests==2.32.3
+    # via assets-project (pyproject.toml)
 six==1.17.0
     # via python-dateutil
 sqlparse==0.5.3
@@ -98,6 +106,8 @@ tzdata==2025.2
     #   django
     #   django-celery-beat
     #   kombu
+urllib3==2.5.0
+    # via requests
 vine==5.1.0
     # via
     #   amqp
