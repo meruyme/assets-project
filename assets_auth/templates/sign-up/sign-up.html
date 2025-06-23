@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    <div class="form-center">
+
+        <div class="form-registration">
+
+            <h1 class="title" style="text-align: center">Cadastro</h1>
+
+                {% csrf_token %}
+
+                {% crispy form %}
+                <br>
+                <p class="text-bottom">Ou, caso já tenha uma conta, <a href="{% url 'assets_auth:login' %}">logue aqui</a></p>
+
+        </div>
+    </div>
+
+{% endblock %}
