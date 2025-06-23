@@ -23,7 +23,7 @@
               <tr>
                   <td>{{ asset.name }}</td>
                   <td>{{ asset.last_price|default_if_none:'-' }}</td>
-                  <td>{{ asset.last_retrieved_at|default_if_none:'-'|date:'d/m/Y H:M:S' }}</td>
+                  <td>{{ asset.last_retrieved_at|default_if_none:'-'|date:'d/m/Y H:i:s' }}</td>
               </tr>
           {% endfor %}
         </tbody>
