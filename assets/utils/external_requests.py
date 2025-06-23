@@ -5,12 +5,11 @@ from typing import Union
 
 
 def external_get_request(
-    url: str, headers: dict, timeout: int = 10, sleep: float = 0.5, timeout_retries: int = 2,
+    url: str, timeout: int = 10, sleep: float = 0.5, timeout_retries: int = 2,
 ) -> Union[dict, list]:
     try:
         response = requests.get(
             url,
-            headers=headers,
             timeout=timeout,
         )
         response.raise_for_status()
@@ -24,7 +23,6 @@ def external_get_request(
         time.sleep(sleep)
         return external_get_request(
             url=url,
-            headers=headers,
             timeout=timeout,
             sleep=sleep + random(),
             timeout_retries=timeout_retries - 1,
