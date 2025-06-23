@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django_celery_beat.models import PeriodicTask, IntervalSchedule, MINUTES
 
 from assets.utils.validators import GreaterThanValueValidator
 
@@ -32,11 +33,38 @@ class Asset(models.Model):
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
-        auto_now=False
+        auto_now=False,
     )
 
     def __str__(self):
         return str(self.pk)
+
+    def save(self, **kwargs):
+        super().save(**kwargs)
+        self.update_schedule()
+
+    def delete(self, using=None, keep_parents=False):
+        self.delete_schedule()
+        super().delete(using, keep_parents)
+
+    def get_schedule_task_name(self):
+        return f'asset_{self.id}'
+
+    def update_schedule(self):
+        interval, _ = IntervalSchedule.objects.get_or_create(every=self.tracking_frequency, period=MINUTES)
+
+        PeriodicTask.objects.update_or_create(
+            name=self.get_schedule_task_name(),
+            task='assets.tasks.retrieve_asset',
+            defaults={
+                'interval': interval,
+                'enabled': True,
+                'args': [self.id],
+            },
+        )
+
+    def delete_schedule(self):
+        PeriodicTask.objects.filter(name=self.get_schedule_task_name()).delete()
 
 
 class AssetPriceHistory(models.Model):
