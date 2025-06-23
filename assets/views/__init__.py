@@ -1,1 +1,1 @@
-from management.views.management import AssetListView
+from assets.views.assets import AssetListView

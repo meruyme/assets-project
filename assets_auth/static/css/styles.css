@@ -45,7 +45,7 @@ label{
     background-color: #7773a3;
 }
 
-.form-cadastro {
+.base {
     min-height: 100vh;
     display: flex;
     flex-direction: column;

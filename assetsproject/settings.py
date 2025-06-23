@@ -88,13 +88,13 @@ WSGI_APPLICATION = 'assetsproject.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DATABASE_NAME", "assetsdb"),
-        "USER": os.environ.get("DATABASE_USER", "postgres"),
-        "PASSWORD": os.environ.get("DATABASE_PASSWORD", "postgres"),
-        "HOST": os.environ.get("DATABASE_HOST", "localhost"),
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME', 'assetsdb'),
+        'USER': os.environ.get('DATABASE_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'postgres'),
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+        'PORT': '5432',
     }
 }
 
@@ -140,8 +140,8 @@ MEDIA_URL = '/media/'
 
 
 LOGIN_URL = 'assets_auth:login'
-LOGIN_REDIRECT_URL = 'assets_auth:home'
-LOGOUT_REDIRECT_URL = 'assets_auth:home'
+LOGIN_REDIRECT_URL = 'assets:list-assets'
+LOGOUT_REDIRECT_URL = 'assets_auth:login'
 
 
 # Default primary key field type
