@@ -1,0 +1,19 @@
+[project]
+name = "assets-project"
+version = "1"
+requires-python = ">=3.9"
+dependencies = [
+    "django==4.2.20",
+    "numpy==1.24.3",
+    "psycopg2-binary==2.8.6",
+    "psycopg2==2.9.1",
+    "python-dateutil==2.9.0",
+    "django-crispy-forms==2.4",
+    "django-bootstrap-pagination==1.7.1",
+    "django-celery-beat==2.8.1",
+    "django-redis==5.4.0",
+    "pip-tools"
+]
+
+[tool.setuptools]
+py-modules = []
