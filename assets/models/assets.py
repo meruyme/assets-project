@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
-from assets.validators import GreaterThanValueValidator
+from assets.utils.validators import GreaterThanValueValidator
 
 
 class Asset(models.Model):
@@ -22,7 +22,7 @@ class Asset(models.Model):
         validators=[GreaterThanValueValidator(0)],
     )
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name='Usuário',
         on_delete=models.CASCADE,
         related_name='assets',
@@ -39,23 +39,22 @@ class Asset(models.Model):
         return str(self.pk)
 
 
-class AssetAmountHistory(models.Model):
+class AssetPriceHistory(models.Model):
     asset = models.ForeignKey(
         Asset,
         verbose_name='Ativo',
         on_delete=models.CASCADE,
-        related_name='amount_history',
+        related_name='price_history',
     )
-    amount = models.DecimalField(
-        verbose_name='Valor',
+    price = models.DecimalField(
+        verbose_name='Cotação',
         max_digits=10,
         decimal_places=2,
         validators=[GreaterThanValueValidator(0)],
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        auto_now=False
+    retrieved_at = models.DateTimeField(
+        verbose_name='Data/hora de monitoramento',
     )
 
     def __str__(self):
-        return f'{self.asset_id} - R${self.amount}'
+        return f'{self.asset_id} - R${self.price}'
