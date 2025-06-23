@@ -49,8 +49,6 @@ django==4.2.20
     #   django-crispy-forms
     #   django-redis
     #   django-timezone-field
-django-bootstrap-pagination==1.7.1
-    # via assets-project (pyproject.toml)
 django-celery-beat==2.8.1
     # via assets-project (pyproject.toml)
 django-crispy-forms==2.4
