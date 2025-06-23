@@ -10,6 +10,7 @@ dependencies = [
     "python-dateutil==2.9.0",
     "django-crispy-forms==2.4",
     "django-bootstrap-pagination==1.7.1",
+    "crispy-bootstrap4==2025.6",
     "django-celery-beat==2.8.1",
     "django-redis==5.4.0",
     "requests==2.32.3",

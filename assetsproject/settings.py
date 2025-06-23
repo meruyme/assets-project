@@ -19,9 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "secret-key")
+SECRET_KEY = os.environ.get('SECRET_KEY', 'secret-key')
 
-DEBUG = os.environ.get("IS_DEBUG", True)
+DEBUG = os.environ.get('IS_DEBUG', True)
 
 ALLOWED_HOSTS = []
 
@@ -38,9 +38,10 @@ INSTALLED_APPS = [
 
     'django_celery_beat',
     'crispy_forms',
+    'crispy_bootstrap4',
 
     'assets',
-    'management',
+    'assets_auth',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-AUTH_USER_MODEL = 'management.User'
+AUTH_USER_MODEL = 'assets_auth.User'
 
 SITE_ID = 1
 
@@ -77,6 +78,7 @@ TEMPLATES = [
     },
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'assetsproject.wsgi.application'
@@ -102,16 +104,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.assets_auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.assets_auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.assets_auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.assets_auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -137,9 +139,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-LOGIN_URL = 'management:login'
-LOGIN_REDIRECT_URL = 'management:home'
-LOGOUT_REDIRECT_URL = 'management:home'
+LOGIN_URL = 'assets_auth:login'
+LOGIN_REDIRECT_URL = 'assets_auth:home'
+LOGOUT_REDIRECT_URL = 'assets_auth:home'
 
 
 # Default primary key field type

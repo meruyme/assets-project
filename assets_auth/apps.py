@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ManagementConfig(AppConfig):
+class AssetsAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'management'
+    name = 'assets_auth'

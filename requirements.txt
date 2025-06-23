@@ -37,11 +37,14 @@ colorama==0.4.6
     # via
     #   build
     #   click
+crispy-bootstrap4==2025.6
+    # via assets-project (pyproject.toml)
 cron-descriptor==1.4.5
     # via django-celery-beat
 django==4.2.20
     # via
     #   assets-project (pyproject.toml)
+    #   crispy-bootstrap4
     #   django-celery-beat
     #   django-crispy-forms
     #   django-redis
@@ -51,7 +54,9 @@ django-bootstrap-pagination==1.7.1
 django-celery-beat==2.8.1
     # via assets-project (pyproject.toml)
 django-crispy-forms==2.4
-    # via assets-project (pyproject.toml)
+    # via
+    #   assets-project (pyproject.toml)
+    #   crispy-bootstrap4
 django-redis==5.4.0
     # via assets-project (pyproject.toml)
 django-timezone-field==7.1
