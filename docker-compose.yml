@@ -12,6 +12,22 @@ services:
     build: .
     container_name: assets-celery
     command: celery -A assetsproject worker --loglevel=INFO -n worker1_default@%h -Q 'default'
+    environment:
+      - PROCESS_TYPE=worker
+      - REDISDB_HOST=assets-redis
+      - BROKER_URL=redis://assets-redis:6379
+      - CACHE_LOCATION=redis://assets-redis:6379
+      - CELERY_RESULT_BACKEND=redis://assets-redis:6379
+      - DATABASE_HOST=assets-db
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - BR_API_TOKEN=${BR_API_TOKEN}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_PORT=${EMAIL_PORT}
     volumes:
       - .:/code
     depends_on:
@@ -21,6 +37,22 @@ services:
     build: .
     container_name: assets-celery-beat
     command: celery -A assetsproject beat --loglevel=DEBUG
+    environment:
+      - PROCESS_TYPE=beat
+      - REDISDB_HOST=assets-redis
+      - BROKER_URL=redis://assets-redis:6379
+      - CACHE_LOCATION=redis://assets-redis:6379
+      - CELERY_RESULT_BACKEND=redis://assets-redis:6379
+      - DATABASE_HOST=assets-db
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - BR_API_TOKEN=${BR_API_TOKEN}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_PORT=${EMAIL_PORT}
     volumes:
       - .:/code
     depends_on:
