@@ -52,8 +52,11 @@ class AssetPriceHistory(models.Model):
         decimal_places=2,
         validators=[GreaterThanValueValidator(0)],
     )
+    market_time = models.DateTimeField()
     retrieved_at = models.DateTimeField(
         verbose_name='Data/hora de monitoramento',
+        auto_now_add=True,
+        auto_now=False,
     )
 
     def __str__(self):
