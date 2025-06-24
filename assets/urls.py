@@ -10,7 +10,7 @@ urlpatterns = [
         name='list-assets',
     ),
     path(
-        'price-history/<int:asset_id>/',
+        '<int:asset_id>/price-history/',
         AssetPriceHistoryListView.as_view(),
         name='list-assets-price-history',
     ),
