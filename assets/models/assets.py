@@ -39,9 +39,16 @@ class Asset(models.Model):
     def __str__(self):
         return str(self.pk)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        setattr(self, 'old_tracking_frequency', getattr(self, 'tracking_frequency', None))
+
     def save(self, **kwargs):
+        pk = self.pk
         super().save(**kwargs)
-        self.update_schedule()
+
+        if not pk or self.tracking_frequency != self.old_tracking_frequency:
+            self.update_schedule()
 
     def delete(self, using=None, keep_parents=False):
         self.delete_schedule()
