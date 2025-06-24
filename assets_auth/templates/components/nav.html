@@ -29,7 +29,7 @@
         text-decoration: none;
     }
 
-    li.home {
+    li a.home {
         padding: 15px 16px;
         color: white;
 
@@ -46,9 +46,11 @@
 
 <nav class="nav">
     <ul class="ul-nav">
-        <li  class="home">
+        <li>
             <b>
-                <img src="{% static 'images/icons/home.svg' %}"> Monitoramento de ações
+                <a class="home" href={% url 'assets:list-assets' %}>
+                    <img src="{% static 'images/icons/home.svg' %}"> Monitoramento de ações
+                </a>
             </b>
         </li>
         <li>
