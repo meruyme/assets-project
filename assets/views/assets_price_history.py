@@ -7,7 +7,7 @@ from assets.models import AssetPriceHistory, Asset
 
 class AssetPriceHistoryListView(LoginRequiredMixin, ListView):
     model = AssetPriceHistory
-    context_object_name = 'assets_price_history'
+    context_object_name = 'prices_history'
     paginate_by = 10
     template_name = 'assets-price-history/list-assets-price-history.html'
 
