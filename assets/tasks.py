@@ -11,17 +11,17 @@ logger = logging.getLogger('retrieve-asset-logger')
 
 @app.task
 def retrieve_asset(asset_id):
-    logger.info(f"Asset ID {asset_id}: Start monitoring.")
+    logger.info(f'Asset ID {asset_id}: Start monitoring.')
     asset = Asset.objects.filter(id=asset_id).select_related('user').first()
 
     if not asset:
-        logger.error(f"Asset ID {asset_id}: Asset not found.")
+        logger.error(f'Asset ID {asset_id}: Asset not found.')
         return
 
     try:
         asset_data = BRAPIClient.get_current_asset_price(asset.name)
     except Exception as e:
-        logger.error(f"Asset ID {asset_id}: BRAPI error: {str(e)}.")
+        logger.error(f'Asset ID {asset_id}: BRAPI error: {str(e)}.')
         return
 
     price_history = AssetPriceHistory.objects.create(
@@ -36,7 +36,7 @@ def retrieve_asset(asset_id):
         id=price_history.id
     ).order_by('retrieved_at').values('price').last()
 
-    logger.info(f"Asset ID {asset_id}: Price created successfully. Asset price history ID: {price_history.id}")
+    logger.info(f'Asset ID {asset_id}: Price created successfully. Asset price history ID: {price_history.id}')
 
     try:
         if (
@@ -52,7 +52,7 @@ def retrieve_asset(asset_id):
                 email_subject='Sugestão de venda de ativo',
                 email_message=email_message,
             )
-            logger.info(f"Asset ID {asset_id}: E-mail sent successfully - Message: {email_message}.")
+            logger.info(f'Asset ID {asset_id}: E-mail sent successfully - Message: {email_message}.')
 
         elif (
             (last_asset_price and last_asset_price['price'] >= asset.lower_limit) or not last_asset_price
@@ -67,6 +67,6 @@ def retrieve_asset(asset_id):
                 email_subject='Sugestão de compra de ativo',
                 email_message=email_message,
             )
-            logger.info(f"Asset ID {asset_id}: E-mail sent successfully - Message: {email_message}.")
+            logger.info(f'Asset ID {asset_id}: E-mail sent successfully - Message: {email_message}.')
     except Exception as e:
-        logger.error(f"Asset ID {asset_id}: Error sending e-mail: {str(e)}.")
+        logger.error(f'Asset ID {asset_id}: Error sending e-mail: {str(e)}.')
