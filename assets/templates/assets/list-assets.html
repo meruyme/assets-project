@@ -1,0 +1,42 @@
+{% extends "base-home.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content-home %}
+    <div class="d-flex justify-content-between">
+        <h1 class="title"> Ativos</h1>
+            <div class="d-flex align-items-center">
+                <button class="btn" onclick="window.location.href = '{% url "assets:create-asset" %}'">Novo</button>
+            </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Ativo</th>
+            <th scope="col">Cotação atual</th>
+            <th scope="col">Atualizado em</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for asset in assets %}
+              <tr>
+                  <td>{{ asset.name }}</td>
+                  <td>{{ asset.last_price|default_if_none:'-' }}</td>
+                  <td>{{ asset.last_retrieved_at|default_if_none:'-'|date:'d/m/Y H:i:s' }}</td>
+                  <td>
+                      <div class="d-flex align-items-center">
+                        <button class="btn" onclick="window.location.href = '{% url "assets:list-assets-price-history" asset.pk %}'">Histórico de cotações</button>
+                        <button class="btn ml-2" onclick="window.location.href = '{% url "assets:update-asset" asset.pk %}'">Editar</button>
+                        <button class="btn ml-2" onclick="window.location.href = '{% url "assets:delete-asset" asset.pk %}'">Excluir</button>
+                      </div>
+                  </td>
+              </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'components/pagination.html' %}
+
+{% endblock %}

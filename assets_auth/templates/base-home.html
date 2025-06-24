@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="home">
+
+       {% include "components/nav.html" %}
+        <div class="base">
+            <div class="messages">
+                    {% for message in messages %}
+                        <div
+                            id="message_container"
+                            role="alert"
+                            class="alert fade show {% if message.tags == 'info' %} alert-primary {% elif message.tags == "error" %} alert-danger {% else %} alert-success {% endif %}"
+                        >
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+            </div>
+            {% block content-home %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

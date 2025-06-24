@@ -1,0 +1,122 @@
+.asteriskField{
+    font-weight: bold;
+    color: #53507A;
+}
+
+label{
+    font-weight: bold;
+    color: #53507A;
+}
+
+.title {
+    margin-bottom: 30px;
+    text-align: left;
+    color: #53507A;
+}
+
+.modal-title{
+    color: #53507A;
+    font-weight: bold;
+}
+
+.modal-header{
+    background-color: #D3E7F7;
+}
+
+.home {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav {
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+}
+
+.form-center {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #7773a3;
+}
+
+.base {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 20px;
+    background-color: #D3E7F7;
+    background-size: cover;
+    width: 80%;
+    margin-left: 20%;
+}
+
+.form-registration {
+    width: 35%;
+    left: 15%;
+    height: min-content;
+    text-align: left;
+    box-shadow: 0px 3px 6px #0000001A;
+    border: 1px solid #E3E3E3;
+    border-radius: 6px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(7.0px);
+    -webkit-backdrop-filter: blur(7.0px);
+}
+
+.text-bottom {
+    padding-top: 15px;
+    text-align: center
+}
+
+.btn-square-md {
+    width: 150px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 150px !important;
+    text-align: center;
+    padding: 0px;
+    font-size: 17px;
+}
+
+.btn{
+    background-color: #53507A;
+    border-color: #53507A;
+    color: white;
+}
+
+li {
+    list-style: none
+}
+
+.btn:hover, .btn:focus, .btn:active {
+    background-color: #7c7fa9;
+    border-color: #7c7fa9;
+}
+
+.messages {
+    margin: 10px;
+}
+
+a:link, a:visited {
+    color: #88b5df;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #88b5df;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.table{
+    background-color: white;
+}
