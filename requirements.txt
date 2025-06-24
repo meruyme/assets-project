@@ -15,7 +15,9 @@ billiard==4.2.1
 build==1.2.2.post1
     # via pip-tools
 celery==5.5.3
-    # via django-celery-beat
+    # via
+    #   assets-project (pyproject.toml)
+    #   django-celery-beat
 certifi==2025.6.15
     # via requests
 charset-normalizer==3.4.2
