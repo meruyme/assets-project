@@ -16,14 +16,21 @@
             <th scope="col">Ativo</th>
             <th scope="col">Cotação atual</th>
             <th scope="col">Atualizado em</th>
+            <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
           {% for asset in assets %}
-              <tr data-href="{% url 'assets:update-asset' pk=asset.id %}">
+              <tr>
                   <td>{{ asset.name }}</td>
                   <td>{{ asset.last_price|default_if_none:'-' }}</td>
                   <td>{{ asset.last_retrieved_at|default_if_none:'-'|date:'d/m/Y H:i:s' }}</td>
+                  <td>
+                      <div class="d-flex align-items-center">
+                        <button class="btn" onclick="window.location.href = '{% url "assets:update-asset" asset.pk %}'">Editar</button>
+                        <button class="btn ml-2" onclick="window.location.href = '{% url "assets:delete-asset" asset.pk %}'">Excluir</button>
+                      </div>
+                  </td>
               </tr>
           {% endfor %}
         </tbody>
@@ -31,14 +38,4 @@
 
     {% include 'components/pagination.html' %}
 
-{% endblock %}
-
-{% block javascript %}
-    <script>
-        $(document).ready(() =>{
-            $('*[data-href]').on('click', function() {
-                window.location = $(this).data("href");
-            });
-        });
-    </script>
 {% endblock %}

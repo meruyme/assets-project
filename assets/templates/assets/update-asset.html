@@ -6,11 +6,7 @@
 {% block content-home %}
 
         <div class="d-flex justify-content-between">
-            <h1 class="title"> Ativo {{ object.name }}</h1>
-            <div class="d-flex align-items-center">
-                <button id="btn-editar" class="btn">Editar</button>
-                <button class="btn ml-2" onclick="window.location.href = '{% url "assets:delete-asset" object.pk %}'">Excluir</button>
-            </div>
+            <h1 class="title">Editar Ativo </h1>
         </div>
 
         <form method="post" novalidate>
@@ -21,19 +17,4 @@
             </div>
         </form>
 
-{% endblock %}
-{% block javascript %}
-    <script src="{% static 'js/common.js' %}"></script>
-    <script>
-        $('#btn-cadastro').addClass('d-none');
-        $("input, select").prop('disabled', true);
-
-        let errors = '{{ form.errors }}';
-        if(errors){
-            $("input, select").prop('disabled', false);
-            $('#btn-editar').text('Desfazer alterações');
-            $('#btn-cadastro').removeClass('d-none');
-            isEditable = true;
-        }
-    </script>
 {% endblock %}
