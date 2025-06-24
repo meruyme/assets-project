@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between">
         <h1 class="title"> Ativos</h1>
             <div class="d-flex align-items-center">
-                <button class="btn" onclick="window.location.href = ''">Novo</button>
+                <button class="btn" onclick="window.location.href = '{% url "assets:create-asset" %}'">Novo</button>
             </div>
     </div>
 
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           {% for asset in assets %}
-              <tr>
+              <tr data-href="{% url 'assets:update-asset' pk=asset.id %}">
                   <td>{{ asset.name }}</td>
                   <td>{{ asset.last_price|default_if_none:'-' }}</td>
                   <td>{{ asset.last_retrieved_at|default_if_none:'-'|date:'d/m/Y H:i:s' }}</td>
@@ -31,4 +31,14 @@
 
     {% include 'components/pagination.html' %}
 
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(() =>{
+            $('*[data-href]').on('click', function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
 {% endblock %}

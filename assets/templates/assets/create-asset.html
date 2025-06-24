@@ -1,0 +1,44 @@
+{% extends "base-home.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block content-home %}
+
+        <div class="d-flex justify-content-between">
+            <h1 class="title"> {% if not hospital_id %}Cadastrar{% endif %} Ativo</h1>
+            {% if hospital_id %}
+                <div class="d-flex align-items-center">
+                    <button id="btn-editar" class="btn">Editar</button>
+                    <button class="btn ml-2" onclick="window.location.href = ''">Excluir</button>
+                </div>
+            {% endif %}
+        </div>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-flex justify-content-end">
+                <button id='btn-cadastro' class="btn">Cadastrar</button>
+            </div>
+        </form>
+
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'js/common.js' %}"></script>
+    <script>
+        //let id = '{{ hospital_id }}';
+        //if(id !== 'None'){
+        //    $('#btn-cadastro').addClass('d-none');
+        //    $("input, select").prop('disabled', true);
+        //}
+
+        //let erros = '{{ form.errors }}';
+        //if(erros){
+        //    $("input, select").prop('disabled', false);
+        //    $('#btn-editar').text('Desfazer alterações');
+        //    $('#btn-cadastro').removeClass('d-none');
+        //    isEditable = true;
+        //}
+    </script>
+{% endblock %}
