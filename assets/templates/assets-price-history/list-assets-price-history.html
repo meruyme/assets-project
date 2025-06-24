@@ -1,0 +1,31 @@
+{% extends "base-home.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content-home %}
+    <div class="d-flex justify-content-between">
+        <h1 class="title"> Cotações do ativo {{ asset.name }}</h1>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Ativo</th>
+            <th scope="col">Cotação</th>
+            <th scope="col">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for price_history in assets_price_history %}
+              <tr>
+                  <td>{{ price_history.asset.name }}</td>
+                  <td>{{ price_history.price }}</td>
+                  <td>{{ price_history.retrieved_at|date:'d/m/Y H:i:s' }}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'components/pagination.html' %}
+
+{% endblock %}

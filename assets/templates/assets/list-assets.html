@@ -27,7 +27,8 @@
                   <td>{{ asset.last_retrieved_at|default_if_none:'-'|date:'d/m/Y H:i:s' }}</td>
                   <td>
                       <div class="d-flex align-items-center">
-                        <button class="btn" onclick="window.location.href = '{% url "assets:update-asset" asset.pk %}'">Editar</button>
+                        <button class="btn" onclick="window.location.href = '{% url "assets:list-assets-price-history" asset.pk %}'">Histórico de cotações</button>
+                        <button class="btn ml-2" onclick="window.location.href = '{% url "assets:update-asset" asset.pk %}'">Editar</button>
                         <button class="btn ml-2" onclick="window.location.href = '{% url "assets:delete-asset" asset.pk %}'">Excluir</button>
                       </div>
                   </td>

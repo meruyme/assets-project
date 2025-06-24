@@ -71,11 +71,6 @@ label{
     -webkit-backdrop-filter: blur(7.0px);
 }
 
-.chart {
-    width: 40%;
-    height: 40%;
-}
-
 .text-bottom {
     padding-top: 15px;
     text-align: center
@@ -110,10 +105,6 @@ li {
     margin: 10px;
 }
 
-[data-href] {
-    cursor: pointer;
-}
-
 a:link, a:visited {
     color: #88b5df;
     background-color: transparent;
@@ -128,26 +119,4 @@ a:hover, a:active {
 
 .table{
     background-color: white;
-}
-
-.pagination > li > a {
-    background-color: white;
-    color: #53507A;
-}
-
-.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
-    color: #5a5a5a;
-    background-color: #eee;
-    border-color: #ddd;
-}
-
-.pagination > .active > a {
-    color: white;
-    background-color: #53507A !important;
-    border: solid 1px #53507A !important;
-}
-
-.pagination > .active > a:hover {
-    background-color: #53507A !important;
-    border: solid 1px #53507A !important;
 }
