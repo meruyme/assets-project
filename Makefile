@@ -15,4 +15,4 @@ local-up:
 	sleep 5
 	docker compose exec web python manage.py migrate
 	sleep 5
-	docker compose up -d db celery celery-beat
+	docker compose up -d celery celery-beat
